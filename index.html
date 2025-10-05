@@ -1,1161 +1,458 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BatoYoga - Expérience Premium en Méditerranée</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Cormorant Garamond', 'Georgia', serif;
-            line-height: 1.8;
-            color: #1a4d4d;
-            background: #fafafa;
-        }
-
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-            z-index: 1000;
-        }
-
-        .nav-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .logo-img {
-            width: 60px;
-            height: 60px;
-        }
-
-        .logo-text {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1a4d4d;
-            letter-spacing: 1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: #1a4d4d;
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-
-        .nav-links a:hover {
-            color: #3fb8af;
-        }
-
-        .hero-section {
-            margin-top: 80px;
-            height: 90vh;
-            background: linear-gradient(rgba(26, 77, 77, 0.3), rgba(63, 184, 175, 0.3)), 
-                        url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080"%3E%3Cdefs%3E%3ClinearGradient id="grad1" x1="0%25" y1="0%25" x2="100%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%233fb8af;stop-opacity:1" /%3E%3Cstop offset="100%25" style="stop-color:%231a4d4d;stop-opacity:1" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill="url(%23grad1)" width="1920" height="1080"/%3E%3Ccircle cx="400" cy="200" r="150" fill="%23ffffff" opacity="0.05"/%3E%3Ccircle cx="1500" cy="800" r="200" fill="%23ffffff" opacity="0.05"/%3E%3C/svg%3E');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-        }
-
-        .hero-content h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-        }
-
-        .hero-content p {
-            font-size: 1.8rem;
-            margin-bottom: 3rem;
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
-
-        .cta-button {
-            background: linear-gradient(135deg, #3fb8af 0%, #2a9d8f 100%);
-            color: white;
-            padding: 1.2rem 3rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            text-decoration: none;
-            display: inline-block;
-            font-weight: 600;
-            letter-spacing: 1px;
-            box-shadow: 0 10px 30px rgba(63, 184, 175, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(63, 184, 175, 0.5);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            color: #1a4d4d;
-            margin-bottom: 1rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.3rem;
-            color: #3fb8af;
-            margin-bottom: 4rem;
-            font-weight: 300;
-        }
-
-        .mindset-section {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            padding: 6rem 2rem;
-        }
-
-        .mindset-content {
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .mindset-text {
-            font-size: 1.3rem;
-            line-height: 2;
-            color: #1a4d4d;
-            margin-bottom: 2rem;
-        }
-
-        .mindset-highlight {
-            font-size: 1.5rem;
-            color: #3fb8af;
-            font-weight: 600;
-            margin: 2rem 0;
-        }
-
-        .vision-section {
-            background: linear-gradient(135deg, #1a4d4d 0%, #2a9d8f 100%);
-            padding: 6rem 2rem;
-            color: white;
-        }
-
-        .vision-content {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .vision-intro {
-            font-size: 1.4rem;
-            line-height: 2;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .vision-list {
-            list-style: none;
-            margin: 3rem 0;
-        }
-
-        .vision-list li {
-            font-size: 1.3rem;
-            padding: 1.5rem;
-            margin: 1rem 0;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            border-left: 5px solid #3fb8af;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .vision-list li::before {
-            content: "✦";
-            font-size: 2rem;
-            color: #3fb8af;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            height: 350px;
-            overflow: hidden;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: transform 0.4s ease;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
-
-        .gallery-item:nth-child(1) {
-            grid-column: span 2;
-            background: linear-gradient(rgba(26, 77, 77, 0.2), rgba(63, 184, 175, 0.2)),
-                        url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Cdefs%3E%3ClinearGradient id="sky" x1="0%25" y1="0%25" x2="0%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%2387CEEB;stop-opacity:1" /%3E%3Cstop offset="100%25" style="stop-color:%23E0F6FF;stop-opacity:1" /%3E%3C/linearGradient%3E%3ClinearGradient id="sea" x1="0%25" y1="0%25" x2="0%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%233fb8af;stop-opacity:1" /%3E%3Cstop offset="100%25" style="stop-color:%231a4d4d;stop-opacity:1" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill="url(%23sky)" width="800" height="300"/%3E%3Crect y="300" fill="url(%23sea)" width="800" height="300"/%3E%3Cpath d="M300 250 Q350 200 400 250 L420 350 Q370 300 320 350 Z" fill="%23ffffff" opacity="0.9"/%3E%3Cpath d="M380 260 L380 350" stroke="%23666" stroke-width="3"/%3E%3Cpath d="M380 270 Q420 250 400 290" fill="%23ff6b6b" opacity="0.7"/%3E%3Ccircle cx="100" cy="100" r="50" fill="%23FFD700" opacity="0.8"/%3E%3C/svg%3E');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .gallery-item:nth-child(2) {
-            background: linear-gradient(rgba(26, 77, 77, 0.2), rgba(63, 184, 175, 0.2)),
-                        url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="600"%3E%3Cdefs%3E%3ClinearGradient id="mat" x1="0%25" y1="0%25" x2="100%25" y2="0%25"%3E%3Cstop offset="0%25" style="stop-color:%23a855f7;stop-opacity:1" /%3E%3Cstop offset="100%25" style="stop-color:%236366f1;stop-opacity:1" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill="%23E0F6FF" width="400" height="600"/%3E%3Crect x="100" y="400" width="200" height="150" rx="5" fill="url(%23mat)"/%3E%3Cellipse cx="200" cy="280" rx="40" ry="50" fill="%2393c5fd"/%3E%3Ccircle cx="200" cy="230" r="35" fill="%2393c5fd"/%3E%3Crect x="160" y="280" width="80" height="120" fill="%2393c5fd"/%3E%3Cellipse cx="170" cy="320" rx="15" ry="50" fill="%2393c5fd"/%3E%3Cellipse cx="230" cy="320" rx="15" ry="50" fill="%2393c5fd"/%3E%3Cellipse cx="150" cy="250" rx="25" ry="8" fill="%2393c5fd"/%3E%3Cellipse cx="250" cy="250" rx="25" ry="8" fill="%2393c5fd"/%3E%3C/svg%3E');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .gallery-item:nth-child(3) {
-            background: linear-gradient(rgba(26, 77, 77, 0.2), rgba(63, 184, 175, 0.2)),
-                        url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="600"%3E%3Cdefs%3E%3CradialGradient id="water"%3E%3Cstop offset="0%25" style="stop-color:%2340E0D0;stop-opacity:1" /%3E%3Cstop offset="100%25" style="stop-color:%231a4d4d;stop-opacity:1" /%3E%3C/radialGradient%3E%3C/defs%3E%3Crect fill="url(%23water)" width="400" height="600"/%3E%3Cpath d="M0 100 Q50 80 100 100 T200 100 T300 100 T400 100" stroke="%23ffffff" stroke-width="2" fill="none" opacity="0.3"/%3E%3Cpath d="M0 150 Q50 130 100 150 T200 150 T300 150 T400 150" stroke="%23ffffff" stroke-width="2" fill="none" opacity="0.3"/%3E%3Cellipse cx="150" cy="400" rx="60" ry="40" fill="%23ff6b6b" opacity="0.6"/%3E%3Cellipse cx="180" cy="380" rx="45" ry="30" fill="%23ff8787" opacity="0.5"/%3E%3Cpath d="M100 300 Q150 250 200 300" stroke="%2393c5fd" stroke-width="3" fill="none"/%3E%3Ccircle cx="120" cy="290" r="8" fill="%2393c5fd"/%3E%3Ccircle cx="180" cy="290" r="8" fill="%2393c5fd"/%3E%3C/svg%3E');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .gallery-item:nth-child(4) {
-            grid-column: span 2;
-            background: linear-gradient(rgba(26, 77, 77, 0.2), rgba(63, 184, 175, 0.2)),
-                        url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="400"%3E%3Cdefs%3E%3ClinearGradient id="sunset" x1="0%25" y1="0%25" x2="0%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%23FF6B6B;stop-opacity:1" /%3E%3Cstop offset="50%25" style="stop-color:%23FFD93D;stop-opacity:1" /%3E%3Cstop offset="100%25" style="stop-color:%23FF8C42;stop-opacity:1" /%3E%3C/linearGradient%3E%3ClinearGradient id="ocean" x1="0%25" y1="0%25" x2="0%25" y2="100%25"%3E%3Cstop offset="0%25" style="stop-color:%233fb8af;stop-opacity:1" /%3E%3Cstop offset="100%25" style="stop-color:%231a4d4d;stop-opacity:1" /%3E%3C/linearGradient%3E%3C/defs%3E%3Crect fill="url(%23sunset)" width="800" height="250"/%3E%3Ccircle cx="650" cy="150" r="80" fill="%23FFD700" opacity="0.9"/%3E%3Crect y="250" fill="url(%23ocean)" width="800" height="150"/%3E%3Cpath d="M200 230 Q250 180 300 230 L320 280 Q270 230 220 280 Z" fill="%23ffffff" opacity="0.8"/%3E%3Cpath d="M270 240 L270 280" stroke="%23666" stroke-width="2"/%3E%3Cpath d="M0 250 Q100 240 200 250 T400 250 T600 250 T800 250" stroke="%23ffffff" stroke-width="2" fill="none" opacity="0.4"/%3E%3C/svg%3E');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            color: white;
-            font-size: 1.8rem;
-            font-weight: 600;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
-            z-index: 10;
-            background: rgba(26, 77, 77, 0.7);
-            padding: 0.5rem 1.5rem;
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-        }
-
-        .options-section {
-            background: white;
-            padding: 6rem 2rem;
-        }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 3rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 10px 50px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pricing-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, #3fb8af, #2a9d8f);
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(63, 184, 175, 0.2);
-            border-color: #3fb8af;
-        }
-
-        .card-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .card-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-
-        .card-title {
-            font-size: 2rem;
-            color: #1a4d4d;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .card-price {
-            font-size: 3.5rem;
-            color: #3fb8af;
-            font-weight: 700;
-            margin: 1.5rem 0;
-        }
-
-        .card-price-detail {
-            font-size: 1.1rem;
-            color: #666;
-            font-weight: 300;
-        }
-
-        .card-features {
-            list-style: none;
-            margin: 2rem 0;
-        }
-
-        .card-features li {
-            padding: 1rem 0;
-            border-bottom: 1px solid #f0f0f0;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .card-features li:before {
-            content: "✓";
-            color: #3fb8af;
-            font-weight: bold;
-            font-size: 1.3rem;
-        }
-
-        .select-button {
-            width: 100%;
-            background: linear-gradient(135deg, #3fb8af 0%, #2a9d8f 100%);
-            color: white;
-            padding: 1.2rem;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .select-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(63, 184, 175, 0.3);
-        }
-
-        .booking-section {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            padding: 6rem 2rem;
-        }
-
-        .booking-form {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 4rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-        }
-
-        .form-section {
-            margin-bottom: 3rem;
-        }
-
-        .form-section-title {
-            font-size: 1.8rem;
-            color: #1a4d4d;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #3fb8af;
-            font-weight: 500;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-group.full-width {
-            grid-column: 1 / -1;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.8rem;
-            color: #1a4d4d;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            font-family: inherit;
-        }
-
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #3fb8af;
-            box-shadow: 0 0 0 3px rgba(63, 184, 175, 0.1);
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: #f8f9fa;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-        }
-
-        .summary-box {
-            background: linear-gradient(135deg, #1a4d4d 0%, #2a9d8f 100%);
-            color: white;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 3rem;
-        }
-
-        .summary-title {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.2);
-        }
-
-        .summary-row:last-child {
-            border-bottom: none;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-top: 1rem;
-            padding-top: 1.5rem;
-            border-top: 2px solid rgba(255,255,255,0.3);
-        }
-
-        .submit-button {
-            width: 100%;
-            background: linear-gradient(135deg, #3fb8af 0%, #2a9d8f 100%);
-            color: white;
-            padding: 1.5rem;
-            border: none;
-            border-radius: 15px;
-            font-size: 1.3rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(63, 184, 175, 0.4);
-        }
-
-        .submit-button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .documents-section {
-            background: white;
-            padding: 6rem 2rem;
-        }
-
-        .documents-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .document-card {
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .document-card:hover {
-            border-color: #3fb8af;
-            transform: translateY(-5px);
-        }
-
-        .document-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .document-title {
-            font-size: 1.3rem;
-            color: #1a4d4d;
-            margin-bottom: 0.5rem;
-            font-weight: 600;
-        }
-
-        .document-description {
-            color: #666;
-            font-size: 1rem;
-        }
-
-        .success-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-        }
-
-        .success-content {
-            background: white;
-            padding: 4rem;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 600px;
-            animation: slideIn 0.5s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .success-icon {
-            font-size: 5rem;
-            margin-bottom: 1rem;
-        }
-
-        .success-title {
-            font-size: 2.5rem;
-            color: #1a4d4d;
-            margin-bottom: 1rem;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        @media (max-width: 1024px) {
-            .pricing-cards,
-            .form-grid,
-            .documents-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .gallery-item:nth-child(1),
-            .gallery-item:nth-child(4) {
-                grid-column: span 1;
-            }
-
-            .hero-content h1 {
-                font-size: 3rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-content h1 {
-                font-size: 2rem;
-            }
-
-            .hero-content p {
-                font-size: 1.2rem;
-            }
-
-            .booking-form {
-                padding: 2rem;
-            }
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BatoYoga — Expérience Premium en Méditerranée</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #FBFAF8; --card: #ffffff; --deep: #071726; --muted: #6b7a7a;
+  --accent: #2A9D8F; --gold: #C9A66B; --glass: rgba(255,255,255,0.6);
+  --container: 1200px; --radius-lg: 18px; --radius-md: 12px;
+  --shadow-strong: 0 18px 50px rgba(7,23,38,0.18);
+  --shadow-soft: 0 8px 30px rgba(7,23,38,0.08);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--deep);margin:0;line-height:1.7;-webkit-font-smoothing:antialiased;}
+
+.wrap{max-width:var(--container);margin:0 auto;padding:0 1.25rem}
+
+.navbar{position:fixed;top:0;width:100%;z-index:1200;background:linear-gradient(180deg, rgba(255,255,255,0.75), rgba(255,255,255,0.50));backdrop-filter:blur(8px);border-bottom:1px solid rgba(7,23,38,0.04);box-shadow:0 6px 30px rgba(7,23,38,0.06);}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;}
+.brand{display:flex;align-items:center;gap:1rem;}
+.logo-mark{width:56px;height:56px;border-radius:12px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--accent),#2A8F7B);box-shadow:0 6px 20px rgba(42,157,143,0.18);}
+.brand-title{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;}
+.brand-sub{font-size:0.8rem;color:var(--muted);margin-top:2px;}
+
+.nav-links{display:flex;gap:1.25rem;align-items:center}
+.nav-links a{color:var(--deep);text-decoration:none;font-weight:600;padding:0.35rem 0.5rem;border-radius:8px;transition:all .18s;}
+.nav-links a:hover{color:var(--accent);transform:translateY(-2px);}
+.cta-nav{background:linear-gradient(90deg,var(--gold),#b58f57);color:#071726;padding:0.6rem 1rem;border-radius:10px;font-weight:700;box-shadow:0 8px 30px rgba(201,166,107,0.12);}
+
+.menu-toggle{display:none}
+
+/* HERO */
+.hero{min-height:78vh;display:flex;align-items:center;border-bottom:1px solid rgba(7,23,38,0.02);}
+.hero-inner{display:grid;grid-template-columns:1fr 520px;gap:2rem;align-items:center;padding:6rem 0;}
+.hero-copy h1{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:700;color:var(--deep);line-height:1.05;margin-bottom:0.6rem;}
+.hero-copy p{color:var(--muted);font-size:1.15rem;margin-bottom:1.25rem;}
+.hero-actions{display:flex;gap:1rem;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:0.8rem;padding:0.85rem 1.2rem;border-radius:999px;border:none;cursor:pointer;font-weight:700}
+.btn-primary{background:linear-gradient(90deg,var(--accent),#2a9d8f);color:white;box-shadow:0 12px 40px rgba(42,157,143,0.18)}
+.btn-ghost{background:transparent;border:1px solid rgba(7,23,38,0.06);color:var(--deep)}
+
+.hero-media{position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-strong);height:460px}
+.hero-media img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-media .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(7,23,38,0.06), rgba(7,23,38,0.10))}
+
+/* SECTIONS */
+section{padding:4.5rem 0}
+.section-title{font-family:'Playfair Display',serif;font-size:2.2rem;margin-bottom:0.6rem;color:var(--deep)}
+.section-sub{color:var(--accent);font-weight:600;margin-bottom:2rem}
+
+/* CAROUSEL */
+.carousel{position:relative;overflow:hidden;border-radius:16px;box-shadow:var(--shadow-soft);margin-bottom:1rem;}
+.carousel-inner{display:flex;transition:transform 1s ease;}
+.carousel-inner img{width:100%;flex-shrink:0;object-fit:cover;height:320px;}
+.carousel-nav{position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between;padding:0 1rem;}
+.carousel-nav button{background:rgba(0,0,0,0.3);border:none;color:white;font-size:2rem;padding:0.3rem 0.6rem;border-radius:50%;cursor:pointer;}
+
+/* Mindset text below */
+.mindset-text{background:linear-gradient(180deg,rgba(250,248,246,1),#fff);border-radius:16px;padding:1.5rem;box-shadow:var(--shadow-soft);text-align:center;margin-top:0.8rem}
+
+/* Pricing Grid */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;}
+.card{background:var(--card);padding:1.8rem;border-radius:var(--radius-md);box-shadow:var(--shadow-soft);border:1px solid rgba(7,23,38,0.05);display:flex;flex-direction:column;}
+.card .price{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:var(--deep);margin-top:0.5rem;margin-bottom:1rem;}
+.card ul{list-style:none;padding:0;margin:0 0 1.5rem 0;}
+.card ul li{margin-bottom:0.7rem;display:flex;align-items:center;gap:0.75rem;color:var(--muted);font-size:0.95rem;}
+.card ul li::before{content:"✓";color:var(--accent);font-weight:700;}
+.card .btn{margin-top:auto;} /* Pousse le bouton en bas */
+
+/* Booking Form */
+.booking{display:grid;grid-template-columns:1fr 360px;gap:2.5rem;align-items:start;}
+.form{display:grid;grid-template-columns:1fr;gap:1.1rem;background:var(--card);padding:2.2rem;border-radius:var(--radius-md);box-shadow:var(--shadow-soft);border:1px solid rgba(7,23,38,0.05);}
+.form label{font-weight:600;font-size:0.9rem;color:var(--deep);margin-bottom:-0.3rem;}
+.form input[type="date"],
+.form input[type="number"],
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="tel"],
+.form select{width:100%;padding:0.8rem 1rem;border:1px solid rgba(7,23,38,0.08);border-radius:8px;font-family:'Inter',sans-serif;font-size:1rem;color:var(--deep);background:var(--bg);}
+.form input[type="date"]:focus,
+.form input[type="number"]:focus,
+.form input[type="text"]:focus,
+.form input[type="email"]:focus,
+.form input[type="tel"]:focus,
+.form select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(42,157,143,0.15);}
+.form input[type="checkbox"]{width:auto;margin-right:0.5rem;}
+.form .submit-button{width:100%;justify-content:center;}
+
+.summary h3{font-family:'Playfair Display',serif;font-size:1.5rem;margin-top:0;margin-bottom:1.5rem;color:white;}
+.summary div{margin-bottom:0.6rem;}
+
+/* Gallery Section */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+.gallery-item{border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-soft);}
+.gallery-item img{width:100%;height:250px;object-fit:cover;display:block;}
+
+/* FOOTER */
+footer{padding:3rem 0;text-align:center;color:var(--muted);font-size:0.9rem;border-top:1px solid rgba(7,23,38,0.02);}
+
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-media{height:360px}
+  .booking{grid-template-columns:1fr;}
+  .summary{width:100%!important;}
+}
+@media(max-width:720px){
+  .nav-links{display:none}
+  .menu-toggle{display:block;background:none;border:none;font-size:1.8rem;color:var(--deep);cursor:pointer;}
+  .navbar{padding:0 1.25rem;}
+  .nav-inner{padding:0.8rem 0;}
+  .hero-copy h1{font-size:2.5rem;}
+  .section-title{font-size:1.8rem;}
+  .pricing-grid{grid-template-columns:1fr;}
+}
+</style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-content">
-            <div class="logo-container">
-                <svg class="logo-img" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                    <defs>
-                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#3fb8af;stop-opacity:1" />
-                            <stop offset="100%" style="stop-color:#2a9d8f;stop-opacity:1" />
-                        </linearGradient>
-                    </defs>
-                    <path d="M100,40 C85,40 75,50 75,65 C75,80 85,90 100,90 C115,90 125,80 125,65 C125,50 115,40 100,40 Z" fill="url(#logoGradient)"/>
-                    <path d="M70,95 L70,105 C70,120 80,140 100,150 C120,140 130,120 130,105 L130,95 C130,95 115,100 100,100 C85,100 70,95 70,95 Z" fill="url(#logoGradient)"/>
-                    <ellipse cx="150" cy="50" rx="15" ry="15" fill="#3fb8af"/>
-                    <path d="M40,140 Q100,120 160,140 L160,145 Q100,125 40,145 Z" fill="#3fb8af"/>
-                    <path d="M45,150 Q100,135 155,150" stroke="#3fb8af" stroke-width="3" fill="none"/>
-                    <path d="M50,160 Q100,145 150,160" stroke="#3fb8af" stroke-width="3" fill="none"/>
-                </svg>
-                <span class="logo-text">BatoYoga</span>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#vision">Notre Vision</a></li>
-                <li><a href="#formules">Nos Formules</a></li>
-                <li><a href="#reservation">Réserver</a></li>
-                <li><a href="#documents">Informations</a></li>
-            </ul>
-        </div>
+
+<header class="navbar">
+  <div class="wrap nav-inner">
+    <div class="brand">
+      <div class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="36" height="36" xmlns="http://www.w3.org/2000/svg" fill="none">
+          <defs><linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#2A9D8F"></stop><stop offset="1" stop-color="#1F8C76"></stop></linearGradient></defs>
+          <rect x="6" y="8" width="52" height="40" rx="8" fill="url(#g1)" />
+          <path d="M20 30 Q32 22 44 30" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.95" />
+        </svg>
+      </div>
+      <div>
+        <div class="brand-title">BatoYoga</div>
+        <div class="brand-sub">Expérience premium — Méditerranée</div>
+      </div>
+    </div>
+    <nav aria-label="Navigation principale">
+      <div class="nav-links">
+        <a href="#accueil">Accueil</a>
+        <a href="#mindset">Notre Mindset</a>
+        <a href="#formules">Formules</a>
+        <a href="#galerie">Galerie</a>
+        <a href="#reservation" class="cta-nav">Réserver</a>
+      </div>
     </nav>
+    <button class="menu-toggle" aria-label="Ouvrir le menu de navigation" style="display: none;">☰</button>
+  </div>
+</header>
 
-    <section class="hero-section" id="accueil">
-        <div class="hero-content">
-            <h1>L'Art du Bien-Être en Mer</h1>
-            <p>Une expérience exclusive alliant navigation et méditation</p>
-            <a href="#formules" class="cta-button">Découvrir nos Expériences</a>
-        </div>
-    </section>
+<main>
 
-    <section class="mindset-section">
-        <div class="container">
-            <h2 class="section-title">Notre Mindset</h2>
-            <div class="mindset-content">
-                <p class="mindset-text">
-                    Notre projet est né d'un rêve simple mais puissant : <strong>offrir un espace de bien-être flottant</strong>, où chacun peut se reconnecter à soi-même tout en découvrant la magie de la mer, sa faune et sa flore. À bord, nous proposerons des séjours allant d'une journée à plusieurs jours, rythmés par des séances de yoga, des moments de détente, des respirations face à l'horizon et des instants de découverte en harmonie avec la nature.
-                </p>
-                <p class="mindset-highlight">
-                    🌊 Sur ce voilier, l'océan devient un partenaire, le vent un guide et le temps une ressource précieuse.
-                </p>
-                <p class="mindset-text">
-                    🧘‍♀️ Ici, on ralentit, on respire, on se recentre.
-                </p>
-                <p class="mindset-text">
-                    🌱 Et surtout, on apprend à respecter et préserver ce lieu extraordinaire qu'est la mer.
-                </p>
-                <p class="mindset-text" style="font-weight: 600; font-size: 1.4rem; margin-top: 2rem;">
-                    Ce projet est bien plus qu'une aventure nautique : c'est une invitation à reprendre contact avec l'essentiel, à vivre pleinement et à partager une expérience hors du commun.
-                </p>
-            </div>
-        </div>
-    </section>
+<section id="accueil" class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <h1>L'art du bien-être en mer — Une expérience exclusive</h1>
+      <p>Co-navigation premium, séances de yoga sur le pont et immersion méditerranéenne dans un cadre haut de gamme.</p>
+      <div class="hero-actions">
+        <a href="#formules" class="btn btn-ghost">Découvrir nos formules</a>
+        <a href="#reservation" class="btn btn-primary">Réserver maintenant</a>
+      </div>
+      <div style="margin-top:1.2rem;color:var(--muted);font-size:0.95rem">Séjour sur mesure • Petits groupes • Skipper & prof certifiés</div>
+    </div>
+    <div class="hero-media" aria-hidden="true">
+      <img src="assets/images/Bateau1.jpeg" alt="Voilier de prestige au coucher de soleil - BatoYoga" loading="eager" decoding="async"> 
+      <div class="overlay"></div>
+    </div>
+  </div>
+</section>
 
-    <section class="vision-section" id="vision">
-        <div class="container">
-            <h2 class="section-title" style="color: white;">Notre Vision</h2>
-            <div class="vision-content">
-                <p class="vision-intro">
-                    BatoYoga est plus qu'un projet de navigation : c'est un <strong>modèle d'équilibre entre l'humain et la nature</strong>. En embarquant avec nous, vous participez à une aventure qui met au centre :
-                </p>
-                <ul class="vision-list">
-                    <li>la <strong>sérénité des personnes</strong>,</li>
-                    <li>le <strong>respect de l'environnement marin</strong>,</li>
-                    <li>la <strong>création d'un mode de vie inspirant</strong> pour demain.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
+<section id="mindset" class="wrap">
+  <h2 class="section-title">Notre Mindset</h2>
+  <p class="section-sub">Un voyage intérieur en harmonie avec la mer</p>
 
-    <div class="container">
-        <h2 class="section-title">Galerie</h2>
-        <p class="section-subtitle">Découvrez l'expérience BatoYoga</p>
-        
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <div class="gallery-caption">Voilier de Prestige</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-caption">Séance Yoga</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-caption">Méditerranée</div>
-            </div>
-            <div class="gallery-item">
-                <div class="gallery-caption">Coucher de Soleil</div>
-            </div>
+  <div class="carousel" id="mindsetCarousel">
+    <div class="carousel-inner">
+      <img src="assets/images/Bateau2.jpeg" alt="Amis sautant du voilier dans la mer"> 
+      <img src="assets/images/yoga2.jpeg" alt="Femme faisant du yoga sur un bateau"> 
+      <img src="assets/images/yoga3.jpeg" alt="Femme faisant du yoga sur un voilier"> 
+      <img src="assets/images/yoga4.jpeg" alt="Femme faisant du yoga sur un bateau au lever du soleil"> 
+    </div>
+    <div class="carousel-nav">
+      <button id="prevMindset">&#10094;</button>
+      <button id="nextMindset">&#10095;</button>
+    </div>
+  </div>
+
+  <div class="mindset-text">
+    <p>Notre projet est né d'un rêve simple mais puissant : <strong>offrir un espace de bien-être flottant</strong>, où chacun peut se reconnecter à soi-même tout en découvrant la magie de la Méditerranée. À bord : yoga, méditation, respiration face à l'horizon et moments de partage.</p>
+    <p style="margin-top:0.5rem;color:var(--muted)">Sur ce voilier, l'océan devient un partenaire, le vent un guide et le temps une ressource précieuse.</p>
+  </div>
+</section>
+
+<section id="formules" class="wrap">
+  <h2 class="section-title">Nos Formules Exclusives</h2>
+  <p class="section-sub">Sur-mesure • Petits groupes • Qualité premium</p>
+  <div class="pricing-grid">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;margin-bottom:1rem;align-items:center;">
+        <div>
+          <div style="font-size:0.95rem;color:var(--muted);">Co-Navigation</div>
+          <div class="price">450€ <span style="font-size:0.75rem;color:var(--muted);font-weight:600">/jour</span></div>
         </div>
+        <div style="font-size:2.2rem">⛵</div>
+      </div>
+      <ul>
+        <li>Skipper professionnel certifié</li>
+        <li>Voilier de prestige tout équipé</li>
+        <li>Groupes réduits (max 4 personnes)</li>
+        <li>Boissons premium et snacks gourmands</li>
+      </ul>
+      <button class="btn btn-primary" onclick="selectOption('navigation')">Réserver cette formule</button>
     </div>
 
-    <section class="options-section" id="formules">
-        <div class="container">
-            <h2 class="section-title">Nos Formules Exclusives</h2>
-            <p class="section-subtitle">Une expérience sur-mesure en co-navigation</p>
-            
-            <div class="pricing-cards">
-                <div class="pricing-card">
-                    <div class="card-header">
-                        <div class="card-icon">⛵</div>
-                        <h3 class="card-title">Co-Navigation Premium</h3>
-                    </div>
-                    <div class="card-price">450€</div>
-                    <div class="card-price-detail">Par jour / Jusqu'à 4 personnes</div>
-                    <ul class="card-features">
-                        <li>Journée complète en mer</li>
-                        <li>Skipper professionnel certifié</li>
-                        <li>Voilier de prestige tout équipé</li>
-                        <li>Maximum 4 personnes (intimité garantie)</li>
-                        <li>Boissons premium incluses</li>
-                        <li>Matériel de navigation fourni</li>
-                        <li>Itinéraire personnalisé</li>
-                        <li>Assurance tous risques</li>
-                    </ul>
-                    <button class="select-button" onclick="selectOption('navigation')">Réserver cette formule</button>
-                </div>
-
-                <div class="pricing-card">
-                    <div class="card-header">
-                        <div class="card-icon">🧘‍♀️</div>
-                        <h3 class="card-title">Voilier + Yoga</h3>
-                    </div>
-                    <div class="card-price">120€</div>
-                    <div class="card-price-detail">Option à ajouter (40€/personne)</div>
-                    <ul class="card-features">
-                        <li>Séance de yoga sur le pont (1h30)</li>
-                        <li>Professeur certifié Yoga Alliance</li>
-                        <li>Tous niveaux acceptés</li>
-                        <li>Tapis de yoga premium fourni</li>
-                        <li>Vue panoramique sur la mer</li>
-                        <li>Moment de méditation guidée</li>
-                        <li>Collation healthy bio</li>
-                        <li>Bouteille d'eau infusée</li>
-                    </ul>
-                    <button class="select-button" onclick="selectOption('navigation-yoga')">Réserver avec Yoga</button>
-                </div>
-            </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;margin-bottom:1rem;align-items:center;">
+        <div>
+          <div style="font-size:0.95rem;color:var(--muted);">Voilier + Yoga</div>
+          <div class="price">120€ <span style="font-size:0.75rem;color:var(--muted);font-weight:600">(option)</span></div>
         </div>
-    </section>
-
-    <section class="booking-section hidden" id="reservation">
-        <div class="container">
-            <h2 class="section-title">Votre Réservation</h2>
-            <p class="section-subtitle">Personnalisez votre expérience</p>
-            
-            <div class="booking-form">
-                <div class="summary-box" id="summaryBox">
-                    <h3 class="summary-title">Récapitulatif de votre réservation</h3>
-                    <div class="summary-row">
-                        <span>Formule sélectionnée :</span>
-                        <span id="summaryFormula">-</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Nombre de jours :</span>
-                        <span id="summaryDays">1</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>Nombre de personnes :</span>
-                        <span id="summaryPeople">1</span>
-                    </div>
-                    <div class="summary-row" id="yogaRow">
-                        <span>Option Yoga :</span>
-                        <span id="summaryYoga">Non</span>
-                    </div>
-                    <div class="summary-row">
-                        <span>TOTAL</span>
-                        <span id="summaryTotal">450€</span>
-                    </div>
-                </div>
-
-                <form id="bookingForm">
-                    <div class="form-section">
-                        <h3 class="form-section-title">📅 Dates de votre sortie</h3>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="startDate">Date de début *</label>
-                                <input type="date" id="startDate" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="endDate">Date de fin *</label>
-                                <input type="date" id="endDate" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="startTime">Heure de départ *</label>
-                                <select id="startTime" required>
-                                    <option value="">Sélectionnez l'horaire</option>
-                                    <option value="08:00">08h00 - Matinée</option>
-                                    <option value="09:00">09h00 - Matinée</option>
-                                    <option value="14:00">14h00 - Après-midi</option>
-                                    <option value="17:00">17h00 - Coucher de soleil</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="people">Nombre de personnes (max 4) *</label>
-                                <input type="number" id="people" min="1" max="4" value="1" required>
-                            </div>
-                        </div>
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="yogaOption">
-                            <label for="yogaOption" style="margin: 0; cursor: pointer;">Ajouter l'option Yoga (40€/personne pour 1h30)</label>
-                        </div>
-                    </div>
-
-                    <div class="form-section">
-                        <h3 class="form-section-title">👤 Vos coordonnées</h3>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label for="firstName">Prénom *</label>
-                                <input type="text" id="firstName" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName">Nom *</label>
-                                <input type="text" id="lastName" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email *</label>
-                                <input type="email" id="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Téléphone *</label>
-                                <input type="tel" id="phone" required>
-                            </div>
-                            <div class="form-group full-width">
-                                <label for="address">Adresse complète *</label>
-                                <input type="text" id="address" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-section">
-                        <h3 class="form-section-title">🎯 Préférences & Demandes</h3>
-                        <div class="form-group">
-                            <label for="experience">Niveau d'expérience en navigation</label>
-                            <select id="experience">
-                                <option value="debutant">Débutant</option>
-                                <option value="intermediaire">Intermédiaire</option>
-                                <option value="avance">Avancé</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="dietaryRestrictions">Restrictions alimentaires ou allergies</label>
-                            <textarea id="dietaryRestrictions" rows="3" placeholder="Ex: Végétarien, allergie aux fruits de mer..."></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="specialRequests">Demandes spéciales</label>
-                            <textarea id="specialRequests" rows="4" placeholder="Occasion spéciale, itinéraire souhaité, besoins particuliers..."></textarea>
-                        </div>
-                    </div>
-
-                    <div class="form-section">
-                        <h3 class="form-section-title">💳 Paiement sécurisé</h3>
-                        <div class="form-grid">
-                            <div class="form-group full-width">
-                                <label for="cardName">Nom sur la carte *</label>
-                                <input type="text" id="cardName" required>
-                            </div>
-                            <div class="form-group full-width">
-                                <label for="cardNumber">Numéro de carte *</label>
-                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="expiry">Date d'expiration *</label>
-                                <input type="text" id="expiry" placeholder="MM/AA" maxlength="5" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="cvv">CVV *</label>
-                                <input type="text" id="cvv" placeholder="123" maxlength="3" required>
-                            </div>
-                        </div>
-
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="termsAccept" required>
-                            <label for="termsAccept" style="margin: 0; cursor: pointer;">J'accepte les conditions générales de vente *</label>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="submit-button">Confirmer et payer</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <section class="documents-section" id="documents">
-        <div class="container">
-            <h2 class="section-title">Informations Pratiques</h2>
-            <p class="section-subtitle">Tout ce que vous devez savoir avant d'embarquer</p>
-            
-            <div class="documents-grid">
-                <div class="document-card">
-                    <div class="document-icon">📋</div>
-                    <h4 class="document-title">Conditions Générales</h4>
-                    <p class="document-description">Consultez nos CGV et politique d'annulation</p>
-                </div>
-
-                <div class="document-card">
-                    <div class="document-icon">🛡️</div>
-                    <h4 class="document-title">Assurance</h4>
-                    <p class="document-description">Couverture complète tous risques incluse</p>
-                </div>
-
-                <div class="document-card">
-                    <div class="document-icon">🎒</div>
-                    <h4 class="document-title">À Emporter</h4>
-                    <p class="document-description">Liste des affaires recommandées à bord</p>
-                </div>
-
-                <div class="document-card">
-                    <div class="document-icon">⚓</div>
-                    <h4 class="document-title">Règlement Intérieur</h4>
-                    <p class="document-description">Consignes de sécurité et de navigation</p>
-                </div>
-
-                <div class="document-card">
-                    <div class="document-icon">🌊</div>
-                    <h4 class="document-title">Conditions Météo</h4>
-                    <p class="document-description">Politique en cas de mauvais temps</p>
-                </div>
-
-                <div class="document-card">
-                    <div class="document-icon">📞</div>
-                    <h4 class="document-title">Contact Urgence</h4>
-                    <p class="document-description">Numéros d'urgence et assistance 24/7</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div id="successModal" class="success-modal hidden">
-        <div class="success-content">
-            <div class="success-icon">✅</div>
-            <h2 class="success-title">Réservation Confirmée !</h2>
-            <p style="font-size: 1.2rem; margin: 2rem 0;">
-                Merci pour votre réservation. Un email de confirmation vous a été envoyé avec tous les détails de votre expérience BatoYoga.
-            </p>
-            <p style="color: #3fb8af; font-size: 1.3rem; font-weight: 600;">
-                À très bientôt pour votre aventure en mer ! ⛵🧘‍♀️
-            </p>
-            <button class="cta-button" onclick="location.reload()" style="margin-top: 2rem;">Nouvelle réservation</button>
-        </div>
+        <div style="font-size:2.2rem">🧘‍♀️</div>
+      </div>
+      <ul>
+        <li>Séance 1h30 sur le pont ou plage</li>
+        <li>Professeur certifié Yoga Alliance</li>
+        <li>Tapis de yoga premium et accessoires fournis</li>
+        <li>Collation healthy et infusions bio</li>
+      </ul>
+      <button class="btn btn-ghost" onclick="selectOption('navigation-yoga')">Réserver avec Yoga</button>
     </div>
+  </div>
+</section>
 
-    <script>
-        let selectedOption = null;
-        const pricePerDay = 450;
-        const yogaPricePerPerson = 40;
+<section id="galerie" class="wrap">
+  <h2 class="section-title">Notre Galerie</h2>
+  <p class="section-sub">Quelques instants de votre future expérience</p>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+        <img src="assets/images/yoga2.jpeg" alt="Séance de yoga sur le pont"> 
+    </div>
+    <div class="gallery-item">
+        <img src="assets/images/Bateau3.jpeg" alt="Voilier vu du ciel"> 
+    </div>
+    <div class="gallery-item">
+        <img src="assets/images/Bateau1.jpeg" alt="Coucher de soleil en mer"> 
+    </div>
+     <div class="gallery-item">
+        <img src="assets/images/Bateau2.jpeg" alt="Moment de détente et de baignade"> 
+    </div>
+  </div>
+</section>
 
-        // Set minimum date to today
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementById('startDate').min = today;
-        document.getElementById('endDate').min = today;
+<section id="reservation" class="wrap">
+  <h2 class="section-title">Votre Réservation</h2>
+  <p class="section-sub">Personnalisez votre expérience</p>
 
-        function selectOption(option) {
-            selectedOption = option;
-            
-            // Scroll to reservation section and show it
-            const reservationSection = document.getElementById('reservation');
-            reservationSection.classList.remove('hidden');
-            
-            setTimeout(() => {
-                reservationSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }, 100);
-            
-            // Update summary
-            updateSummary();
-        }
+  <div class="booking">
+    <form id="bookingForm" class="form" aria-label="Formulaire de réservation">
+      <label for="startDate">Date de début *</label>
+      <input id="startDate" type="date" required>
+      <label for="endDate">Date de fin *</label>
+      <input id="endDate" type="date" required>
+      <label for="startTime">Heure de départ *</label>
+      <select id="startTime" required>
+        <option value="">Sélectionnez</option>
+        <option value="08:00">08h00 - Matin (Aurore)</option>
+        <option value="09:00">09h00 - Matin (Sérénité)</option>
+        <option value="14:00">14h00 - Après-midi (Exploration)</option>
+        <option value="17:00">17h00 - Coucher de soleil (Magie)</option>
+      </select>
+      <label for="people">Nombre de personnes (max 4) *</label>
+      <input id="people" type="number" min="1" max="4" value="1" required>
+      <div style="display:flex;gap:1rem;align-items:center;margin-bottom:1rem">
+        <input id="yogaOption" type="checkbox">
+        <label for="yogaOption" style="margin:0">Ajouter l'option Yoga (120€/séance)</label>
+      </div>
 
-        function calculateDays() {
-            const startDate = document.getElementById('startDate').value;
-            const endDate = document.getElementById('endDate').value;
-            
-            if (startDate && endDate) {
-                const start = new Date(startDate);
-                const end = new Date(endDate);
-                const diffTime = Math.abs(end - start);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-                return diffDays;
-            }
-            return 1;
-        }
+      <hr style="border:none;border-top:1px solid rgba(7,23,38,0.04);margin:1rem 0">
 
-        function updateSummary() {
-            if (!selectedOption) return;
-            
-            const optionNames = {
-                navigation: 'Co-Navigation Premium',
-                'navigation-yoga': 'Co-Navigation Premium + Yoga'
-            };
-            
-            const days = calculateDays();
-            const people = parseInt(document.getElementById('people').value) || 1;
-            const yogaChecked = document.getElementById('yogaOption').checked;
-            
-            let total = pricePerDay * days;
-            
-            if (yogaChecked) {
-                total += yogaPricePerPerson * people * days;
-            }
-            
-            document.getElementById('summaryFormula').textContent = optionNames[selectedOption];
-            document.getElementById('summaryDays').textContent = days;
-            document.getElementById('summaryPeople').textContent = people;
-            document.getElementById('summaryYoga').textContent = yogaChecked ? `Oui (${yogaPricePerPerson}€ × ${people} × ${days}j)` : 'Non';
-            document.getElementById('summaryTotal').textContent = total + '€';
-        }
+      <label for="firstName">Prénom *</label>
+      <input id="firstName" type="text" required>
+      <label for="lastName">Nom *</label>
+      <input id="lastName" type="text" required>
+      <label for="email">Email *</label>
+      <input id="email" type="email" required>
+      <label for="phone">Téléphone *</label>
+      <input id="phone" type="tel" required>
 
-        // Event listeners for form changes
-        document.getElementById('startDate').addEventListener('change', function() {
-            const startDate = this.value;
-            document.getElementById('endDate').min = startDate;
-            updateSummary();
-        });
+      <hr style="border:none;border-top:1px solid rgba(7,23,38,0.04);margin:1rem 0">
 
-        document.getElementById('endDate').addEventListener('change', updateSummary);
-        document.getElementById('people').addEventListener('input', updateSummary);
-        document.getElementById('yogaOption').addEventListener('change', updateSummary);
+      <label style="display:flex;gap:0.75rem;align-items:center;cursor:pointer"><input id="termsAccept" type="checkbox" required> J'accepte les <a href="#" style="color:var(--accent);text-decoration:none;font-weight:600;">conditions générales de vente</a></label>
 
-        // Format card number
-        document.getElementById('cardNumber').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\s/g, '').replace(/\D/g, '');
-            let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
-            e.target.value = formattedValue;
-        });
+      <div style="margin-top:1.25rem">
+        <button type="submit" class="submit-button btn btn-primary">Confirmer et payer</button>
+      </div>
+    </form>
+    <aside class="summary" aria-live="polite" style="width:360px;background:linear-gradient(180deg,var(--deep),#214a4a);color:white;padding:1.6rem;border-radius:14px;box-shadow:0 20px 60px rgba(7,23,38,0.18)">
+      <h3>Récapitulatif</h3>
+      <div style="display:flex;justify-content:space-between;margin:0.8rem 0"><div>Formule</div><div id="summaryFormula">-</div></div>
+      <div style="display:flex;justify-content:space-between;margin:0.8rem 0"><div>Jours</div><div id="summaryDays">1</div></div>
+      <div style="display:flex;justify-content:space-between;margin:0.8rem 0"><div>Personnes</div><div id="summaryPeople">1</div></div>
+      <div style="display:flex;justify-content:space-between;margin:0.8rem 0"><div>Yoga</div><div id="summaryYoga">Non</div></div>
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.12);margin:0.8rem 0">
+      <div style="display:flex;justify-content:space-between;font-weight:800;font-size:1.25rem"><div>TOTAL</div><div id="summaryTotal">450€</div></div>
+      <div style="margin-top:1rem;color:rgba(255,255,255,0.85);font-size:0.9rem">Paiement sécurisé • Annulation 48h</div>
+    </aside>
+  </div>
+</section>
 
-        // Format expiry date
-        document.getElementById('expiry').addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length >= 2) {
-                value = value.slice(0, 2) + '/' + value.slice(2, 4);
-            }
-            e.target.value = value;
-        });
+<footer>
+<div class="wrap">© <span id="year"></span> BatoYoga. Tous droits réservés.</div>
+</footer>
 
-        // Format CVV (numbers only)
-        document.getElementById('cvv').addEventListener('input', function(e) {
-            e.target.value = e.target.value.replace(/\D/g, '');
-        });
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Handle form submission
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validate dates
-            const startDate = document.getElementById('startDate').value;
-            const endDate = document.getElementById('endDate').value;
-            
-            if (!startDate || !endDate) {
-                alert('Veuillez sélectionner les dates de votre séjour.');
-                return;
-            }
-            
-            if (new Date(endDate) < new Date(startDate)) {
-                alert('La date de fin doit être après la date de début.');
-                return;
-            }
-            
-            // Simulate payment processing
-            const btn = this.querySelector('button[type="submit"]');
-            btn.disabled = true;
-            btn.textContent = 'Traitement en cours...';
-            
-            setTimeout(function() {
-                document.getElementById('successModal').classList.remove('hidden');
-                btn.disabled = false;
-                btn.textContent = 'Confirmer et payer';
-            }, 2000);
-        });
+  // Carousel functionality
+  const carouselInner = document.getElementById('mindsetCarousel').querySelector('.carousel-inner');
+  const prevMindset = document.getElementById('prevMindset');
+  const nextMindset = document.getElementById('nextMindset');
+  let currentIndex = 0;
+  const images = carouselInner.children;
+  const totalImages = images.length;
 
-        // Smooth scroll for all anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
+  function updateCarousel() {
+    carouselInner.style.transform = `translateX(${-currentIndex * 100}%)`;
+  }
+
+  prevMindset.addEventListener('click', () => {
+    currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalImages - 1;
+    updateCarousel();
+  });
+
+  nextMindset.addEventListener('click', () => {
+    currentIndex = (currentIndex < totalImages - 1) ? currentIndex + 1 : 0;
+    updateCarousel();
+  });
+
+  // Booking form logic
+  const startDateInput = document.getElementById('startDate');
+  const endDateInput = document.getElementById('endDate');
+  const peopleInput = document.getElementById('people');
+  const yogaOptionCheckbox = document.getElementById('yogaOption');
+
+  const summaryFormula = document.getElementById('summaryFormula');
+  const summaryDays = document.getElementById('summaryDays');
+  const summaryPeople = document.getElementById('summaryPeople');
+  const summaryYoga = document.getElementById('summaryYoga');
+  const summaryTotal = document.getElementById('summaryTotal');
+
+  const BASE_PRICE_PER_DAY = 450;
+  const YOGA_PRICE_PER_SESSION = 120; 
+
+  function calculateTotal() {
+    const startDate = new Date(startDateInput.value);
+    const endDate = new Date(endDateInput.value);
+    const people = parseInt(peopleInput.value, 10);
+    const hasYoga = yogaOptionCheckbox.checked;
+
+    let days = 0;
+    if (startDate && endDate && startDate < endDate) {
+      // Calculate number of whole days
+      days = Math.ceil((endDate - startDate) / (1000 * 60 * 60 * 24));
+    } else if (startDate) { 
+        days = 1; // Default to 1 day if only start date or start=end
+    } else {
+        days = 1; // Default to 1 day if nothing selected yet
+    }
+
+
+    let total = days * BASE_PRICE_PER_DAY;
+
+    if (hasYoga) {
+      // Logic: flat fee per booking, assuming the session takes place during the trip
+      total += YOGA_PRICE_PER_SESSION; 
+      summaryYoga.textContent = `Oui (${YOGA_PRICE_PER_SESSION}€)`;
+    } else {
+      summaryYoga.textContent = 'Non';
+    }
+
+    summaryDays.textContent = days;
+    summaryPeople.textContent = people;
+    summaryTotal.textContent = `${total}€`;
+  }
+
+  function selectOption(option) {
+      if (option === 'navigation') {
+          summaryFormula.textContent = 'Co-Navigation';
+          yogaOptionCheckbox.checked = false; 
+      } else if (option === 'navigation-yoga') {
+          summaryFormula.textContent = 'Voilier + Yoga';
+          yogaOptionCheckbox.checked = true; 
+      }
+      calculateTotal();
+  }
+
+  // Initial call and event listeners
+  selectOption('navigation'); 
+  startDateInput.addEventListener('change', calculateTotal);
+  endDateInput.addEventListener('change', calculateTotal);
+  peopleInput.addEventListener('change', calculateTotal);
+  yogaOptionCheckbox.addEventListener('change', calculateTotal);
+
+  // Responsive Navbar 
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (window.innerWidth <= 720) {
+      navLinks.style.display = 'none'; 
+      menuToggle.style.display = 'block';
+  }
+  window.addEventListener('resize', () => {
+      if (window.innerWidth > 720) {
+          navLinks.style.display = 'flex';
+          menuToggle.style.display = 'none';
+          navLinks.style.position = 'static';
+          navLinks.style.backgroundColor = 'transparent';
+          navLinks.style.boxShadow = 'none';
+          navLinks.style.padding = '0';
+          navLinks.style.borderRadius = '0';
+          navLinks.style.gap = '1.25rem';
+          navLinks.style.alignItems = 'center';
+          navLinks.style.flexDirection = 'row';
+
+      } else {
+          navLinks.style.display = 'none';
+          menuToggle.style.display = 'block';
+      }
+  });
+
+  menuToggle.addEventListener('click', () => {
+    if (navLinks.style.display === 'none' || navLinks.style.display === '') {
+      navLinks.style.display = 'flex';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '70px'; 
+      navLinks.style.right = '1.25rem';
+      navLinks.style.backgroundColor = 'var(--card)';
+      navLinks.style.boxShadow = 'var(--shadow-soft)';
+      navLinks.style.padding = '1rem';
+      navLinks.style.borderRadius = 'var(--radius-md)';
+      navLinks.style.gap = '0.5rem';
+      navLinks.style.alignItems = 'flex-end'; 
+    } else {
+      navLinks.style.display = 'none';
+    }
+  });
+
+
+</script>
+
 </body>
 </html>
